@@ -7,7 +7,7 @@ public class AppConfig {
     private static Properties appProperties;
     private static String defaultDownloadPath;
     public static System.Logger LOGGER;
-    private static void getAppConfigurations(){
+    public static void getAppConfigurations(){
         String fileName="application.properties";
         FileInputStream fileInputStream;
         try {

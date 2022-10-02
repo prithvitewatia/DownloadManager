@@ -8,7 +8,17 @@ public class FileInfo {
     private final SimpleStringProperty name=new SimpleStringProperty();
     private final SimpleStringProperty url=new SimpleStringProperty();
     private final SimpleStringProperty status=new SimpleStringProperty();
+    private final SimpleStringProperty action=new SimpleStringProperty();
     private final SimpleStringProperty addedOn=new SimpleStringProperty();
+
+    public FileInfo(String downloadLocation, String filename, String urlTextField, String status, String action, String date) {
+        this.setLocation(downloadLocation);
+        this.setName(filename);
+        this.setUrl(urlTextField);
+        this.setStatus(status);
+        this.setAction(action);
+        this.setAddedOn(date);
+    }
 
     public String getLocation() {
         return location.get();
@@ -68,5 +78,17 @@ public class FileInfo {
 
     public void setAddedOn(String addedOn) {
         this.addedOn.set(addedOn);
+    }
+
+    public String getAction() {
+        return action.get();
+    }
+
+    public SimpleStringProperty actionProperty() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action.set(action);
     }
 }

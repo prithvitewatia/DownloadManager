@@ -91,4 +91,10 @@ public class FileInfo {
     public void setAction(String action) {
         this.action.set(action);
     }
+
+    @Override
+    public String toString() {
+        return  "name=" + name.get() +
+                ",location=" + location.get();
+    }
 }

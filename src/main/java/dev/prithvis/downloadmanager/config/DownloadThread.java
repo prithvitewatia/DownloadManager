@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class DownloadThread extends Thread{
     public FileInfo file;
     public DownloadManager downloadManager;
-    public static System.Logger LOGGER;
+    public final System.Logger LOGGER=System.getLogger(this.getClass().getName());
     public DownloadThread(FileInfo file,DownloadManager downloadManager){
         this.downloadManager=downloadManager;
         this.file=file;
@@ -22,23 +22,23 @@ public class DownloadThread extends Thread{
         this.file.setStatus("DOWNLOADING");
         this.downloadManager.updateUI(file);
         try {
-            Files.copy((new URL(this.file.getUrl()).openStream()), Paths.get(this.file.getLocation()));
+            Files.copy((new URL(this.file.getUrl()).openStream()), Paths.get(file.getLocation(), file.getName()));
             this.file.setStatus("DOWNLOADED");
-            LOGGER.log(System.Logger.Level.INFO,String.format("%s downloaded at %s"+System.lineSeparator(),
+            LOGGER.log(System.Logger.Level.INFO,String.format("%s downloaded at %s",
                     file.getName(),file.getLocation()));
         }catch (FileAlreadyExistsException fileAlreadyExistsException){
             this.file.setStatus("SKIPPED");
-            LOGGER.log(System.Logger.Level.WARNING,String.format("%s already exists at %s.Skipping download"+System.lineSeparator()
+            LOGGER.log(System.Logger.Level.WARNING,String.format("%s already exists at %s.Skipping download"
                     ,file.getName(),file.getLocation()));
         }
         catch (IOException e) {
             this.file.setStatus("FAILED");
-            LOGGER.log(System.Logger.Level.ERROR,String.format("Download of %s failed because of %s"+System.lineSeparator(),
+            LOGGER.log(System.Logger.Level.ERROR,String.format("Download of %s failed because of %s",
                     file.getName(),e.getMessage()));
             throw new RuntimeException(e);
         }
         this.downloadManager.updateUI(file);
-        LOGGER.log(System.Logger.Level.INFO,String.format("Download of %s completed"+System.lineSeparator(),
+        LOGGER.log(System.Logger.Level.INFO,String.format("Download of %s completed",
                 file.getName()));
     }
 }

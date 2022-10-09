@@ -14,12 +14,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="564.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.prithvis.downloadmanager.DownloadManager">
    <children>
       <BorderPane layoutX="217.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
+<!--                   Download Manager Heading-->
                   <Text lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Download Manager">
                      <font>
                         <Font name="AppleGothic Regular" size="46.0" />
@@ -28,7 +30,8 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <GridPane alignment="TOP_CENTER">
+<!--                   Download manager Heading ends -->
+                  <GridPane alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="126.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="695.0" minWidth="10.0" prefWidth="603.0" />
@@ -39,41 +42,31 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Download URL">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Text>
-                        <TextField fx:id="download_url_text_field" promptText="Enter download URL here" GridPane.columnIndex="1">
-                           <opaqueInsets>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </opaqueInsets>
-                        </TextField>
-                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Text>
-                        <TextField fx:id="save_location_field" promptText="Save this file here" text="%DOWNLOAD_PATH" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="File Name" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Text>
-                        <TextField fx:id="file_name_field" promptText="Enter the file name here" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
+                         <Label text="Download URL"
+                                GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <font>
+                                     <Font name="AppleGothic Regular" size="14"/>
+                                 </font>
+                         </Label>
+                         <TextField fx:id="download_url_text_field" promptText="Enter download URL here"
+                                    GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                         <Label text="Save Location"
+                                GridPane.columnIndex="0" GridPane.rowIndex="1">
+                             <font>
+                                 <Font name="AppleGothic Regular" size="14"/>
+                             </font>
+                         </Label>
+                         <TextField fx:id="save_location_field" promptText="Enter download location here" text="%DOWNLOAD_PATH"
+                                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                         <Label text="FileName"
+                                GridPane.columnIndex="0" GridPane.rowIndex="2">
+                             <font>
+                                 <Font name="AppleGothic Regular" size="14"/>
+                             </font>
+                         </Label>
+                         <TextField fx:id="file_name_field" promptText="Save as file name"
+                                    GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
                      </children>
                      <opaqueInsets>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -11,16 +11,16 @@ import java.nio.file.Paths;
 
 public class DownloadThread extends Thread{
     public FileInfo file;
-    public DownloadManager downloadManager;
     public final System.Logger LOGGER=System.getLogger(this.getClass().getName());
-    public DownloadThread(FileInfo file,DownloadManager downloadManager){
-        this.downloadManager=downloadManager;
+    private final DownloadManager manager;
+    public DownloadThread(FileInfo file,DownloadManager manager){
         this.file=file;
+        this.manager=manager;
     }
     @Override
     public void run(){
         this.file.setStatus("DOWNLOADING");
-        this.downloadManager.updateUI(file);
+        this.manager.updateTable();
         try {
             Files.copy((new URL(this.file.getUrl()).openStream()), Paths.get(file.getLocation(), file.getName()));
             this.file.setStatus("DOWNLOADED");
@@ -37,7 +37,7 @@ public class DownloadThread extends Thread{
                     file.getName(),e.getMessage()));
             throw new RuntimeException(e);
         }
-        this.downloadManager.updateUI(file);
+        this.manager.updateTable();
         LOGGER.log(System.Logger.Level.INFO,String.format("Download of %s completed",
                 file.getName()));
     }

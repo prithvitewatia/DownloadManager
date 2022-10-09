@@ -2,6 +2,8 @@ package dev.prithvis.downloadmanager;
 
 import dev.prithvis.downloadmanager.config.DownloadThread;
 import dev.prithvis.downloadmanager.models.FileInfo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -38,17 +40,19 @@ public class DownloadManager {
         FileInfo file=new FileInfo(downloadLocation,filename,urlTextField,status,action,date);
         LOGGER.log(System.Logger.Level.INFO,"Download file with info "+file+" started");
         DownloadThread thread=new DownloadThread(file,this);
+        this.downloadTable.getItems().add(file);
         thread.start();
+        this.download_url_text_field.setText("");
+        this.file_name_field.setText("");
     }
     @FXML
     public void initialize(){
-        downloadTable=new TableView<>();
-        TableColumn<FileInfo,String> location=new TableColumn<>("Location");
-        TableColumn<FileInfo,String> fileName=new TableColumn<>("File Name");
-        TableColumn<FileInfo,String> downloadUrl=new TableColumn<>("Download URL");
-        TableColumn<FileInfo,String> status=new TableColumn<>("Status");
-        TableColumn<FileInfo,String> action=new TableColumn<>("Action");
-        TableColumn<FileInfo,String> addedOn=new TableColumn<>("Added on");
+        TableColumn<FileInfo,String> location= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(0);
+        TableColumn<FileInfo,String> fileName= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(1);
+        TableColumn<FileInfo,String> downloadUrl= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(2);
+        TableColumn<FileInfo,String> status= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(3);
+        TableColumn<FileInfo,String> action= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(4);
+        TableColumn<FileInfo,String> addedOn= (TableColumn<FileInfo, String>) this.downloadTable.getColumns().get(5);
 
         location.setCellValueFactory(p -> p.getValue().locationProperty());
         fileName.setCellValueFactory(p -> p.getValue().nameProperty());
@@ -65,8 +69,7 @@ public class DownloadManager {
         downloadTable.getColumns().add(addedOn);
         LOGGER.log(System.Logger.Level.DEBUG,"Initialized table");
     }
-    public void updateUI(FileInfo file) {
-        downloadTable.getItems().add(file);
-        downloadTable.refresh();
+    public void updateTable(){
+        this.downloadTable.refresh();
     }
 }

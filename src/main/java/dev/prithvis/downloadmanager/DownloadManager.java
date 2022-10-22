@@ -61,12 +61,6 @@ public class DownloadManager {
         action.setCellValueFactory(p -> p.getValue().actionProperty());
         addedOn.setCellValueFactory(p -> p.getValue().addedOnProperty());
 
-        downloadTable.getColumns().add(location);
-        downloadTable.getColumns().add(fileName);
-        downloadTable.getColumns().add(downloadUrl);
-        downloadTable.getColumns().add(status);
-        downloadTable.getColumns().add(action);
-        downloadTable.getColumns().add(addedOn);
         LOGGER.log(System.Logger.Level.DEBUG,"Initialized table");
     }
     public void updateTable(){

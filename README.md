@@ -8,7 +8,7 @@ and you are good to go.
 
 ### Usage Examples
 
-![Download manager](https://github.com/prithvitewatia/DownloadManager/src/main/resources/img/DownloadManager.png)
+![Download manager](https://github.com/prithvitewatia/DownloadManager/blob/main/src/main/resources/img/DownloadManager.png)
 
 ### Feedback
 

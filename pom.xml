@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>dev.prithvis.downloadmanager/dev.prithvis.downloadmanager.HelloApplication
+                            <mainClass>dev.prithvis.downloadmanager/dev.prithvis.downloadmanager.MainDownload
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
